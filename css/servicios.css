@@ -26,6 +26,46 @@
   --color-white: #fff;
 }
 
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.whatsapp-btn img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Tooltip oculto por defecto */
+.whatsapp-tooltip {
+  position: absolute;
+  bottom: 70px;
+  /* encima del botón */
+  right: 0;
+  background-color: #25D366;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* Mostrar tooltip al pasar el cursor */
+.whatsapp-btn:hover .whatsapp-tooltip {
+  opacity: 1;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -52,9 +92,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin: auto;
-  padding: 0.8rem 0;
+  max-width: 1535px;
+  margin: 0 auto;
+  padding: 16px 32px;
 }
 
 .volver-servicios {
@@ -78,7 +118,8 @@ body {
 
 /* ====== HERO SECTION ====== */
 .hero {
-  height: 70vh;
+  height: 400px;
+  margin-top: 56px;
   background: url('../img/servicios_tarjeta1.webp') center/cover no-repeat;
   position: relative;
   display: flex;
@@ -101,10 +142,12 @@ body {
 
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1300px;
-  padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1535px;    /* similar al límite del contenedor */
+    margin: 0 auto;       /* centra */
+    padding: 0 2rem;      /* igual que px-8 */
 }
 
 .hero-content h2 {
@@ -116,6 +159,7 @@ body {
 }
 
 .hero-content p {
+  max-width: 770px;
   line-height: 28px;
   font-size: 20px;
   font-weight: 400;
@@ -123,28 +167,31 @@ body {
 }
 
 .detalle-servicio {
-
-  padding: 3rem 2rem;
+    padding: 64px 32px;
+    max-width: 1535px;
+    margin: 0 auto;
 }
 
 .detalle-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    max-width: 1472px;
+    margin: 0 auto;
+    gap: 48px;
 }
 
 .detalle-contenido {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 .detalle-box {
-  background: white;
-  padding: 2rem;
+  background: var(--color-white);
+  padding: 32px;
+  margin-bottom: 32px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-right: 2rem;
 }
 
 
@@ -181,6 +228,7 @@ body {
 .cita-header {
   background: var(--color-blue-600);
   padding: 24px;
+  max-width: 712px;
   border-radius: 14px 14px 0 0;
 }
 
@@ -230,8 +278,9 @@ body {
 
 /* ===== CONTENEDOR BLANCO INFERIOR ===== */
 .cita-form {
-  background: white;
+  background: var(--color-white);
   padding: 24px;
+  max-width: 712px;
   border-radius: 0 0 14px 14px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
@@ -528,7 +577,6 @@ body {
 .info-extra {
   display: flex;
   gap: 1rem;
-  margin-right: 2rem;
 }
 
 .info-box {
@@ -574,4 +622,122 @@ body {
 .reveal.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =======================
+   RESPONSIVE — 1400px
+======================= */
+@media (max-width: 1400px) {
+
+  .nav-content {
+    max-width: 1280px;
+}
+
+.hero-content {
+    max-width: 1280px;
+}
+
+.detalle-servicio {
+    max-width: 1280px;
+}
+
+  /* Grid principal */
+  .detalle-grid { 
+    max-width: 1216px;
+  }
+
+}
+
+@media (max-width: 1200px) {
+
+  .nav-content {
+    max-width: 1024px;
+}
+
+.hero-content {
+    max-width: 1024px;
+}
+
+.detalle-servicio {
+    max-width: 1024px;
+}
+
+  /* Grid principal */
+  .detalle-grid { 
+    max-width: 960px;
+  }
+
+    .form-group.grid-cols-2 {
+  grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 1024px) {
+
+    .nav-content {
+    max-width: 768px;
+}
+
+.hero-content {
+    max-width: 768px;
+}
+
+.detalle-servicio {
+    max-width: 768px;
+}
+
+  /* Grid principal */
+  .detalle-grid { 
+    max-width: 720px;
+    grid-template-columns: 1fr;
+  }
+
+    .form-group.grid-cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+}
+
+@media (max-width: 768px) {
+
+.nav-content {
+    max-width: 640px;
+}
+
+.hero-content {
+    max-width: 640px;
+}
+
+.detalle-servicio {
+    max-width: 640px;
+}
+
+  /* Grid principal */
+  .detalle-grid { 
+    max-width: 592px;
+  }
+
+  .form-group.grid-cols-2 {
+  grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 640px) {
+    .info-extra {
+    flex-direction: column;
+  }
+
+  .hero-content h2 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 40px;
+    color: var(--color-white);
+}
+
+.hero-content p {
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+}
 }

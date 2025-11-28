@@ -60,11 +60,13 @@ const selectVirtual = document.getElementById("selectVirtual");
 const fechaPresencial = document.getElementById("fechaPresencial");
 const fechaVirtual = document.getElementById("fechaVirtual");
 
-// --- HORAS ---
-const horas = [
-    "08:00", "09:00", "10:00", "11:00", "12:00",
-    "13:00", "14:00", "15:00", "16:00",
-    "17:00", "18:00"
+// --- HORAS SEPARADAS ---
+const horasPresencial = [
+    "08:00", "10:00", "12:00", "15:00", "17:00"
+];
+
+const horasVirtual = [
+    "18:00", "19:00", "20:00"
 ];
 
 // --- MOSTRAR HORARIOS ---
@@ -80,7 +82,8 @@ function mostrarHorarios(tipo) {
     }
 
     lista.innerHTML = "";
-    horas.forEach(h => {
+    const horarios = tipo === "Presencial" ? horasPresencial : horasVirtual;
+    horarios.forEach(h => {
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "px-3 py-2 rounded-lg text-sm transition-all bg-gray-100 text-gray-700 hover:bg-gray-200";
@@ -139,11 +142,17 @@ selectVirtual.addEventListener("change", () => {
 // --- FLATPICKR ---
 flatpickr("#inputFechaPresencial", {
     dateFormat: "Y-m-d",
-    minDate: "today",
+    minDate: new Date().fp_incr(1),
     allowInput: true,
     disableMobile: false,
     locale: "es",
-    
+
+    disable: [
+        function (date) {
+            return date.getDay() === 0;
+        }
+    ],
+
     onChange: function (selectedDates, dateStr) {
         if (!dateStr) return;
         mostrarHorarios("Presencial");
@@ -154,10 +163,17 @@ flatpickr("#inputFechaPresencial", {
 
 flatpickr("#inputFechaVirtual", {
     dateFormat: "Y-m-d",
-    minDate: "today",
+    minDate: new Date().fp_incr(1), 
     allowInput: true,
     disableMobile: false,
     locale: "es",
+
+    disable: [
+        function (date) {
+            return date.getDay() === 0;
+        }
+    ],
+
     onChange: function (selectedDates, dateStr) {
         if (!dateStr) return;
         mostrarHorarios("Virtual");
@@ -255,3 +271,39 @@ document.getElementById("DatosPresencial").addEventListener("submit", function (
     e.preventDefault();
     mostrarMensajeConfirmacion('presencial');
 });
+
+const revealElements = document.querySelectorAll(".reveal");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add("show");
+            }, index * 200); // Retraso para animación escalonada
+
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+revealElements.forEach(el => observer.observe(el));
+
+
+
+const reveals = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-bottom');
+
+const revealOnScroll = () => {
+    const trigger = window.innerHeight * 0.85;
+
+    reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+
+        if (top < trigger) {
+            el.classList.add('show');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);

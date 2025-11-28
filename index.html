@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +9,11 @@
 </head>
 
 <body>
+
+    <a href="https://wa.me/51913866291?text=Hola%20tengo%20una%20duda" class="whatsapp-btn" target="_blank">
+    <img src="img/whatsapp_icon.png" alt="WhatsApp">
+    <span class="whatsapp-tooltip">¿Tienes alguna duda? Escríbenos…</span>
+  </a>
 
   <!-- ====== ENCABEZADO ====== -->
   <header class="navbar">
@@ -26,12 +30,29 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#especialidades">Especialidades</a></li>
           <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#sobremi">Sobre mí</a></li>
           <li><a href="#nosotros">Quiénes Somos</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
-      <a href="#servicios" class="btn-primary">Agendar visita</a>
+      <a href="#servicios" class="btn-primary desktop">Agendar visita</a>
+<button class="menu-toggle md:hidden p-2" aria-label="Abrir menú">
+  <i class="fas fa-bars menu-icon"></i>
+</button>
+
     </div>
+
+    <nav class="mobile-menu">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#sobremi">Sobre mí</a></li>
+        <li><a href="#nosotros">Quiénes Somos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+        <a href="#servicios" class="btn-primary">Agendar visita</a>
+    </nav>
   </header>
 
   <!-- ====== BANNER ====== -->
@@ -49,12 +70,6 @@
       <i class="fa-solid fa-chevron-down"></i>
     </a>
   </section>
-
-  <a href="https://wa.me/51913866291?text=Hola%20tengo%20una%20duda" 
-   class="whatsapp-btn" target="_blank">
-   <img src="img/whatsapp_icon.png" alt="WhatsApp">
-   <span class="whatsapp-tooltip">¿Tienes alguna duda? Escríbenos…</span>
-</a>
 
   <!-- ====== CARRUSEL ====== -->
   <section class="section-carousel" id="especialidades">
@@ -86,7 +101,7 @@
             <div class="carousel-content">
               <div class="content-inner">
                 <div class="line"></div>
-                <h3 class="content-title">Independizaciónde Propiedades</h3>
+                <h3 class="content-title">Independización de Propiedades</h3>
                 <p class="content-desc">Separamos tu propiedad de manera legal y segura.</p>
               </div>
             </div>
@@ -117,7 +132,7 @@
               <div class="content-inner">
                 <div class="line"></div>
                 <h3 class="content-title">Licencias de Funcionamiento</h3>
-                <p class="content-desc">Tramitamos tu licencia de funcionamientoe e ITSE</p>
+                <p class="content-desc">Tramitamos tu licencia de funcionamiento e ITSE</p>
               </div>
             </div>
           </div>
@@ -190,7 +205,7 @@
                 <h3>Regularización de licencias de construcción</h3>
               </div>
               <p class="description">Regularización de todo tipo de construcción que no obtuvo su licencia de
-                edificación. Así evitará notificaciones y multas imprevistas.</p>
+                edificación. Así evitará notificaciones y multas imprevistas de la municipalidad.</p>
               <a href="Servicios/informacion2.html" class="card-button">Más Información <i
                   class="fa-solid fa-chevron-right arrow-icon"></i></a>
             </div>
@@ -217,15 +232,16 @@
     </div>
   </section>
 
-  <section class="manager-message">
+  <section class="manager-message" id="sobremi">
     <!-- Fondo decorativo -->
     <div class="manager-bg">
       <div class="manager-bg-circle"></div>
     </div>
 
     <div class="container">
-        <h2 class="titulo reveal">Nuestro Compromiso Contigo</h2>
-        <p class="section-subtitle reveal">Mostramos nuestra visión y liderazgo, ofreciendo un servicio responsable, eficiente y cercano en cada proyecto que acompañamos.</p>
+      <h2 class="titulo reveal">Sobre mí</h2>
+      <p class="section-subtitle reveal">Una breve presentación de mi experiencia, valores y compromiso profesional para
+        ofrecerte un servicio confiable y cercano.</p>
       <div class="manager-grid">
         <!-- Columna izquierda: imagen -->
         <div class="manager-image-wrap">
@@ -303,7 +319,7 @@
   <section id="nosotros" class="about">
     <div class="about-container">
       <div class="about-image reveal-left">
-        <img src="img/quienessomos.webp" alt="Equipo de trabajo">
+        <img src="img/quienessomos.jpeg" alt="Equipo de trabajo">
       </div>
 
       <div class="about-content">
@@ -394,7 +410,7 @@
         <div class="social-icons">
           <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
           <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
         </div>
       </div>
     </div>

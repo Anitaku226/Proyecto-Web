@@ -1,5 +1,54 @@
-const revealElements = document.querySelectorAll(".reveal");
+const toggleBtn = document.querySelector('.menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+const icon = toggleBtn.querySelector('.menu-icon');
 
+// Función para abrir/cerrar menú y cambiar ícono
+function toggleMenu(open) {
+  if (open) {
+    mobileMenu.style.display = "block";
+    requestAnimationFrame(() => {
+      mobileMenu.classList.add('open');
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-xmark');
+    });
+  } else {
+    mobileMenu.classList.remove('open');
+    icon.classList.remove('fa-xmark');
+    icon.classList.add('fa-bars');
+    mobileMenu.addEventListener('transitionend', function handler() {
+      if (!mobileMenu.classList.contains('open')) {
+        mobileMenu.style.display = "none";
+      }
+      mobileMenu.removeEventListener('transitionend', handler);
+    });
+  }
+}
+
+// Toggle al hacer click en el botón
+toggleBtn.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.contains('open');
+  toggleMenu(!isOpen);
+});
+
+// Cerrar al presionar una opción del menú
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    toggleMenu(false);
+  });
+});
+
+// Cerrar al presionar fuera del menú
+document.addEventListener('click', (e) => {
+  if (!mobileMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+    if (mobileMenu.classList.contains('open')) {
+      toggleMenu(false);
+    }
+  }
+});
+
+
+
+const revealElements = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(entries => {
   entries.forEach((entry, index) => {
     if (entry.isIntersecting) {
@@ -57,9 +106,23 @@ originalItems.forEach(item => {
 // Ahora tenemos duplicado
 const allItems = document.querySelectorAll('.carousel-item');
 
-// Medida real
-const itemWidth = originalItems[0].offsetWidth + 30;
+// -----------------------------
+//      MEDIDA REAL
+// -----------------------------
+let itemWidth;
 
+function updateItemWidth() {
+    itemWidth = originalItems[0].offsetWidth + 30; // ancho tarjeta + gap
+}
+
+// recalcular al inicio
+updateItemWidth();
+
+// recalcular cuando la ventana cambie de tamaño
+window.addEventListener("resize", () => {
+    updateItemWidth();
+    moveCarousel(false); // mantener posición con nuevo ancho
+});
 
 // -----------------------------
 //          MOVER
@@ -68,7 +131,6 @@ function moveCarousel(animate = true) {
     track.style.transition = animate ? "transform 0.4s ease" : "none";
     track.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
 
-    // Índice del dot basado SOLO en 0–3
     const safeIndex = ((currentIndex % totalOriginal) + totalOriginal) % totalOriginal;
 
     dots.forEach((dot, i) => {
@@ -76,16 +138,13 @@ function moveCarousel(animate = true) {
     });
 }
 
-
 // -----------------------------
 //          SIGUIENTE
 // -----------------------------
 function goNext() {
     currentIndex++;
-
     moveCarousel(true);
 
-    // Reset suave ANTES (cuando comienza la sección duplicada)
     if (currentIndex === totalOriginal) {
         setTimeout(() => {
             currentIndex = 0;
@@ -93,7 +152,6 @@ function goNext() {
         }, 400);
     }
 }
-
 
 // -----------------------------
 //          ANTERIOR
@@ -110,11 +168,9 @@ function goPrev() {
     moveCarousel(true);
 }
 
-
 // Botones
 nextBtn.addEventListener("click", goNext);
 prevBtn.addEventListener("click", goPrev);
-
 
 // -----------------------------
 //            DOTS
@@ -126,12 +182,10 @@ dots.forEach((dot, i) => {
     });
 });
 
-
 // -----------------------------
 //        AUTO SLIDE
 // -----------------------------
 setInterval(goNext, 4000);
-
 
 // -----------------------------
 //       DRAG / SWIPE
@@ -149,7 +203,6 @@ track.addEventListener("mousedown", (e) => {
 
 track.addEventListener("mousemove", (e) => {
     if (!dragging) return;
-
     const diff = e.pageX - dragStart;
     track.style.transform = `translateX(${prevTranslate + diff}px)`;
 });
@@ -157,9 +210,7 @@ track.addEventListener("mousemove", (e) => {
 track.addEventListener("mouseup", (e) => {
     if (!dragging) return;
     dragging = false;
-
     const diff = e.pageX - dragStart;
-
     if (diff < -80) goNext();
     else if (diff > 80) goPrev();
     else moveCarousel(true);
@@ -182,7 +233,6 @@ track.addEventListener("touchstart", (e) => {
 
 track.addEventListener("touchmove", (e) => {
     if (!dragging) return;
-
     const diff = e.touches[0].clientX - dragStart;
     track.style.transform = `translateX(${prevTranslate + diff}px)`;
 });
@@ -190,9 +240,7 @@ track.addEventListener("touchmove", (e) => {
 track.addEventListener("touchend", (e) => {
     if (!dragging) return;
     dragging = false;
-
     const diff = e.changedTouches[0].clientX - dragStart;
-
     if (diff < -80) goNext();
     else if (diff > 80) goPrev();
     else moveCarousel(true);
@@ -200,3 +248,13 @@ track.addEventListener("touchend", (e) => {
 
 // Iniciar
 moveCarousel(false);
+
+
+// CERRAR MENÚ AUTOMÁTICAMENTE AL PASAR A ESCRITORIO
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    mobileMenu.classList.remove('open');
+    toggleBtn.classList.remove('active');
+    mobileMenu.style.display = "none";
+  }
+});
