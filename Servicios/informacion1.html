@@ -136,7 +136,7 @@
 
             <!-- ================== DATOS PERSONALES PRESENCIAL ================== -->
             <div id="datosPersonalesPresencial" class="form-section" style="display:none;">
-              <form id="DatosPresencial">
+              <form id="DatosPresencial" action="../php/procesar_cita.php" method="POST">
 
                 <!-- NOMBRE COMPLETO -->
                 <div class="form-group grid-cols-2">
@@ -144,13 +144,13 @@
                     <label class="cita-label" for="nombreCompletoPresencial">
                       Nombre completo <span class="asterisco-rojo">*</span>
                     </label>
-                    <input type="text" id="nombreCompletoPresencial" class="cita-input" required>
+                    <input type="text" id="nombreCompletoPresencial" class="cita-input" name="nombre" required>
                   </div>
                   <div>
                     <label class="cita-label" for="dniPresencial">
                       DNI <span class="asterisco-rojo">*</span>
                     </label>
-                    <input type="text" id="dniPresencial" maxlength="8" class="cita-input" required>
+                    <input type="text" id="dniPresencial" maxlength="8" class="cita-input" name="dni" required>
                   </div>
                 </div>
 
@@ -160,14 +160,14 @@
                     <label class="cita-label" for="emailPresencial">
                       Correo electrónico <span class="asterisco-rojo">*</span>
                     </label>
-                    <input type="email" id="emailPresencial" class="cita-input" required>
+                    <input type="email" id="emailPresencial" class="cita-input" name="email" required>
                   </div>
 
                   <div>
                     <label class="cita-label" for="telefonoPresencial">
                       Teléfono <span class="asterisco-rojo">*</span>
                     </label>
-                    <input type="tel" id="telefonoPresencial" class="cita-input" required>
+                    <input type="tel" id="telefonoPresencial" class="cita-input" name="telefono" required>
                   </div>
                 </div>
 
@@ -176,7 +176,7 @@
                   <label class="cita-label" for="asuntoPresencial">
                     Asunto <span class="asterisco-rojo">*</span>
                   </label>
-                  <textarea id="asuntoPresencial" class="cita-input" rows="3" required></textarea>
+                  <textarea id="asuntoPresencial" class="cita-input" rows="3" name="asunto" required></textarea>
                 </div>
 
                 <!-- RESUMEN -->
@@ -192,6 +192,11 @@
                 <div class="form-group one-button">
                   <button type="submit" class="cita-button-submit">Agendar Visita</button>
                 </div>
+
+                <input type="hidden" name="tipo" value="presencial">
+                <input type="hidden" id="fechaSeleccionadaPresencial" name="fecha">
+                <input type="hidden" id="horaSeleccionadaPresencial" name="hora">
+                <input type="hidden" id="distritoSeleccionadoPresencial" name="distrito">
 
               </form>
             </div>
@@ -223,72 +228,75 @@
               <label class="label-horario"><i class="fa-solid fa-clock" style="color:#2563eb;"></i> Selecciona una hora
                 (8:00 AM - 6:00 PM)</label>
               <div id="listaHorariosVirtual" class="horas-grid"></div>
-              <p class="info-cupo">Aún disponible - capacidad máxima: 5 personas</p>
+              <p class="info-cupo">Aún disponible - capacidad máxima: 3 personas</p>
             </div>
 
-           <div id="datosPersonalesVirtual" class="form-section" style="display:none;">
-  <form id="DatosVirtual">
+            <div id="datosPersonalesVirtual" class="form-section" style="display:none;">
+              <form id="DatosVirtual" action="../php/procesar_cita.php" method="POST">
 
-    <!-- NOMBRE COMPLETO + DNI -->
-    <div class="form-group grid-cols-2">
-      <div>
-        <label class="cita-label" for="nombreCompletoVirtual">
-          Nombre completo <span class="asterisco-rojo">*</span>
-        </label>
-        <input type="text" id="nombreCompletoVirtual" class="cita-input" required>
-      </div>
+                <!-- NOMBRE COMPLETO + DNI -->
+                <div class="form-group grid-cols-2">
+                  <div>
+                    <label class="cita-label" for="nombreCompletoVirtual">
+                      Nombre completo <span class="asterisco-rojo">*</span>
+                    </label>
+                    <input type="text" id="nombreCompletoVirtual" class="cita-input" name="nombre" required>
+                  </div>
 
-      <div>
-        <label class="cita-label" for="dniVirtual">
-          DNI <span class="asterisco-rojo">*</span>
-        </label>
-        <input type="text" id="dniVirtual" maxlength="8" class="cita-input" required>
-      </div>
-    </div>
+                  <div>
+                    <label class="cita-label" for="dniVirtual">
+                      DNI <span class="asterisco-rojo">*</span>
+                    </label>
+                    <input type="text" id="dniVirtual" maxlength="8" class="cita-input" name="dni" required>
+                  </div>
+                </div>
 
-    <!-- CORREO + TELÉFONO -->
-    <div class="form-group grid-cols-2">
-      <div>
-        <label class="cita-label" for="emailVirtual">
-          Correo electrónico <span class="asterisco-rojo">*</span>
-        </label>
-        <input type="email" id="emailVirtual" class="cita-input" required>
-      </div>
+                <!-- CORREO + TELÉFONO -->
+                <div class="form-group grid-cols-2">
+                  <div>
+                    <label class="cita-label" for="emailVirtual">
+                      Correo electrónico <span class="asterisco-rojo">*</span>
+                    </label>
+                    <input type="email" id="emailVirtual" class="cita-input" name="email" required>
+                  </div>
 
-      <div>
-        <label class="cita-label" for="telefonoVirtual">
-          Teléfono <span class="asterisco-rojo">*</span>
-        </label>
-        <input type="tel" id="telefonoVirtual" class="cita-input" required>
-      </div>
-    </div>
+                  <div>
+                    <label class="cita-label" for="telefonoVirtual">
+                      Teléfono <span class="asterisco-rojo">*</span>
+                    </label>
+                    <input type="tel" id="telefonoVirtual" class="cita-input" name="telefono" required>
+                  </div>
+                </div>
 
-    <!-- ASUNTO -->
-    <div class="form-group">
-      <label class="cita-label" for="asuntoVirtual">
-        Asunto <span class="asterisco-rojo">*</span>
-      </label>
-      <textarea id="asuntoVirtual" class="cita-input" rows="3" required></textarea>
-    </div>
+                <!-- ASUNTO -->
+                <div class="form-group">
+                  <label class="cita-label" for="asuntoVirtual">
+                    Asunto <span class="asterisco-rojo">*</span>
+                  </label>
+                  <textarea id="asuntoVirtual" class="cita-input" rows="3" name="asunto" required></textarea>
+                </div>
 
-    <!-- RESUMEN -->
-    <div id="resumenCitaVirtual" class="resumen-cita">
-      <h4>Resumen de tu cita</h4>
-      <p>Fecha: <span id="resumenFechaVirtual"></span></p>
-      <p>Hora: <span id="resumenHoraVirtual"></span></p>
-      <p>Tipo: Virtual</p>
-      <p>Distrito: <span id="resumenDistritoVirtual"></span></p>
-    </div>
+                <!-- RESUMEN -->
+                <div id="resumenCitaVirtual" class="resumen-cita">
+                  <h4>Resumen de tu cita</h4>
+                  <p>Fecha: <span id="resumenFechaVirtual"></span></p>
+                  <p>Hora: <span id="resumenHoraVirtual"></span></p>
+                  <p>Tipo: Virtual</p>
+                  <p>Distrito: <span id="resumenDistritoVirtual"></span></p>
+                </div>
 
-    <!-- BOTÓN -->
-    <div class="form-group one-button">
-      <button type="submit" class="cita-button-submit">Agendar Visita</button>
-    </div>
+                <!-- BOTÓN -->
+                <div class="form-group one-button">
+                  <button type="submit" class="cita-button-submit">Agendar Visita</button>
+                </div>
 
-  </form>
-</div>
-
-
+                <input type="hidden" name="tipo" value="virtual">
+                <input type="hidden" id="fechaSeleccionadaVirtual" name="fecha">
+                <input type="hidden" id="horaSeleccionadaVirtual" name="hora">
+                <input type="hidden" id="zonaSeleccionadaVirtual" name="zona">
+              </form>
+            </div>
+            
           </div>
         </div>
         <div id="mensajeConfirmacion" class="confirmacion hidden"></div>

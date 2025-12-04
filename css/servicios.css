@@ -739,5 +739,24 @@ body {
     font-size: 20px;
     font-weight: 400;
     color: #fff;
+    width: 90%;
 }
+}
+
+/* ESTADO: ocupado (máxima prioridad) */
+.horas-grid button.ocupado,
+.horas-grid button.ocupado:hover,
+.horas-grid button.ocupado:focus {
+  background: var(--color-gray-300) !important;
+  color: var(--color-gray-500) !important;
+  cursor: not-allowed !important;
+  opacity: .6 !important;
+  pointer-events: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Asegurar que el hover no cambie nada */
+.horas-grid button.ocupado:hover {
+  background: var(--color-gray-300) !important;
 }

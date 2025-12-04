@@ -645,8 +645,8 @@ html {
 
 /* ====== HERO SECTION ====== */
 .hero {
-  height: 100vh;
-  background: url('../img/banner1.jpeg') center/cover no-repeat;
+  height: 650px;
+  background: url('../img/banner.jpg') center/cover no-repeat;
   position: relative;
   display: flex;
   align-items: center;
@@ -654,6 +654,7 @@ html {
   text-align: center;
   color: white;
   z-index: 0;
+  margin-top: 80px;
 }
 
 .overlay {
@@ -740,7 +741,7 @@ html {
   color: #fff;
 }
 
-.btn-secondary {
+.btn-secondary {  
   font-size: 16px;
   line-height: 24px;
   background: #fff;
@@ -916,7 +917,7 @@ html {
   }
 
   .hero-content h2 {
-    font-size: 30px;
+    font-size: 34px;
     line-height: 36px;
     margin-bottom: 0.8rem;
   }
@@ -1008,13 +1009,6 @@ html {
   margin-bottom: 16px;
   color: var(--color-blue-900);
   font-weight: 400;
-}
-
-.carousel-subtitle {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 28px;
-  color: var(--color-gray-600);
 }
 
 /* === ENVOLTORIO DEL CARRUSEL === */
@@ -1259,11 +1253,6 @@ html {
     line-height: 56px;
   }
 
-  .carousel-subtitle {
-    font-size: 20px;
-    line-height: 28px;
-  }
-
   .carousel-item {
     min-width: 360px;
     height: 400px;
@@ -1305,11 +1294,6 @@ html {
   .carousel-title {
     font-size: 44px;
     line-height: 52px;
-  }
-
-  .carousel-subtitle {
-    font-size: 18px;
-    line-height: 26px;
   }
 
   .carousel-item {
@@ -1359,11 +1343,6 @@ html {
     line-height: 46px;
   }
 
-  .carousel-subtitle {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
   .carousel-item {
     min-width: 305px;
     /* ancho de la tarjeta */
@@ -1408,13 +1387,8 @@ html {
   }
 
   .carousel-title {
-    font-size: 32px;
+    font-size: 34px;
     line-height: 40px;
-  }
-
-  .carousel-subtitle {
-    font-size: 14px;
-    line-height: 20px;
   }
 
   .carousel-item {
@@ -1810,7 +1784,7 @@ html {
 
   /* Subtítulo */
   .section-subtitle {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 20px;
     margin-bottom: 64px;
   }
@@ -1834,7 +1808,7 @@ html {
 
   /* Fondo oscuro interno */
   .card-overlay {
-    border-radius: 18px;
+    border-radius: 10px;
   }
 
   /* Contenido */
@@ -1858,13 +1832,13 @@ html {
 
   /* Título de cada tarjeta */
   .service-content h3 {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 26px;
   }
 
   /* Descripción */
   .description {
-    font-size: 14px;
+    font-size: 13px;
     line-height: 22px;
   }
 
@@ -2144,6 +2118,11 @@ html {
     max-height: 650px;
   }
 
+  .manager-message .titulo {
+    font-size: 36px;
+    line-height: 40px;
+}
+
 }
 
 /* ====== NOSOTROS SECTION ====== */
@@ -2229,6 +2208,27 @@ html {
   transition-delay: 0.3s;
 }
 
+/* ===== RESPONSIVE: Unificar animaciones en pantallas pequeñas ===== */
+@media (max-width: 768px) {
+
+  /* reveal-left pasa a animación vertical */
+  .reveal-left {
+    transform: translateY(40px); /* igual que .reveal */
+  }
+  .reveal-left.show {
+    transform: translateY(0);
+  }
+
+  /* reveal-right pasa a animación vertical */
+  .reveal-right {
+    transform: translateY(40px); /* igual que .reveal */
+  }
+  .reveal-right.show {
+    transform: translateY(0);
+  }
+}
+
+
 
 .about-content h2 {
   font-size: 48px;
@@ -2313,16 +2313,13 @@ html {
 @media(max-width: 1024px) {
   .about-container {
     max-width: 90%;
-    flex-direction: column;
+    flex-direction: column-reverse;
     text-align: center;
-    /* opcional según tu diseño */
     gap: 40px;
-    /* reduce el espacio entre imagen y texto */
   }
 
   .about-image img {
     max-width: 100%;
-    /* para que no quede gigante */
   }
 
   .about-content h2 {
