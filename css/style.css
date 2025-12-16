@@ -30,11 +30,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
   font-family: system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+      min-width: 384px;
 }
 
 .container {
@@ -153,7 +155,9 @@ html {
   align-items: center;
   width: 100% !important;
   margin: auto;
-  padding: 0.8rem 0 !important;
+  max-width: 1472px;
+  height: 80px;
+  padding: 0px 32px !important;
 }
 
 /* Logo */
@@ -163,14 +167,13 @@ html {
   gap: 10px;
 }
 
-.logo-icon {
-  background: #1853E6;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  border-radius: 8px;
-  padding: 9px 12px;
+/* Logo imagen */
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
+
 
 .logo-text h1 {
   font-size: 16px;
@@ -351,51 +354,10 @@ html {
    ============================= */
 @media (max-width: 1400px) {
 
-  /* Ajuste general del header */
   .nav-content {
-    height: 80px;
-    /* Igual al Figma */
-    padding: 0 40px !important;
-    /* px-10 aprox */
-    gap: 1.5rem;
+    max-width: 1216px;
   }
 
-  /* LOGO */
-  .logo-icon {
-    font-size: 14px;
-    padding: 8px 10px;
-    border-radius: 8px;
-    /* igual a Tailwind rounded-lg */
-  }
-
-  .logo-text h1 {
-    font-size: 15px;
-    line-height: 1.1;
-  }
-
-  .logo-text p {
-    font-size: 0.72rem;
-  }
-
-  /* MENÚ (desktop) */
-  .menu ul {
-    gap: 2rem;
-    /* 32px */
-  }
-
-  .menu ul li a {
-    font-size: 0.95rem;
-    /* un poco más compacto */
-  }
-
-  /* BOTÓN */
-  .btn-primary {
-    padding: 12px 24px;
-    /* py-3 px-6 */
-    font-size: 0.95rem;
-    border-radius: 8px;
-    /* rounded-lg */
-  }
 }
 
 
@@ -404,48 +366,8 @@ html {
 ============================= */
 @media (max-width: 1200px) {
 
-  /* Contenedor del header */
   .nav-content {
-    height: 80px;
-    padding: 0 32px !important;
-    /* Igual a px-8 en Figma */
-    gap: 1.25rem;
-    /* 20px – reduce un poco pero mantiene aire */
-  }
-
-  /* LOGO (se mantiene casi igual al de 1400px) */
-  .logo-icon {
-    font-size: 14px;
-    padding: 8px 10px;
-    /* Igual a 1400px, no se reduce más */
-    border-radius: 8px;
-  }
-
-  .logo-text h1 {
-    font-size: 14px;
-    line-height: 1.1;
-  }
-
-  .logo-text p {
-    font-size: 0.70rem;
-  }
-
-  /* MENÚ (más compacto, pero sin perder legibilidad) */
-  .menu ul {
-    gap: 1.5rem;
-    /* 24px */
-  }
-
-  .menu ul li a {
-    font-size: 0.9rem;
-  }
-
-  /* BOTÓN “Agendar visita” (casi igual al de Figma 1200px) */
-  .btn-primary {
-    padding: 10px 24px;
-    /* py-2.5 px-6 (similar a Figma sin exagerar) */
-    font-size: 0.9rem;
-    border-radius: 8px;
+    max-width: 960px;
   }
 }
 
@@ -455,44 +377,8 @@ html {
 ============================= */
 @media (max-width: 1024px) {
 
-  /* Contenedor */
   .nav-content {
-    height: 80px;
-    padding: 0 24px !important;
-    /* Igual a px-6 de Figma */
-    gap: 1rem;
-    /* 16px */
-  }
-
-  /* Logo ligeramente más compacto */
-  .logo-icon {
-    font-size: 13px;
-    padding: 7px 9px;
-    border-radius: 8px;
-  }
-
-  .logo-text h1 {
-    font-size: 13.5px;
-  }
-
-  .logo-text p {
-    font-size: 0.68rem;
-  }
-
-  /* Menú desktop sigue visible */
-  .menu ul {
-    gap: 1.25rem;
-    /* 20px */
-  }
-
-  .menu ul li a {
-    font-size: 0.85rem;
-  }
-
-  /* Botón sigue visible */
-  .btn-primary {
-    padding: 10px 20px;
-    font-size: 0.85rem;
+    max-width: 760px;
   }
 }
 
@@ -504,20 +390,18 @@ html {
   /* Mostrar toggle */
   .menu-toggle {
     display: inline-flex;
-    align-items: center;
+    align-items: cent er;
     justify-content: center;
     font-size: 28px;
-    /* más accesible */
     padding: 10px;
   }
 
-  /* Ocultar menú desktop y botón principal original */
   .menu,
   .btn-primary.desktop {
     display: none !important;
   }
 
-  /* Mostrar la estructura mobile-menu (oculto hasta .open) */
+  /* muestra el mobile-menu*/
   .mobile-menu {
     display: none;
     position: absolute;
@@ -544,7 +428,6 @@ html {
     opacity: 1;
   }
 
-  /* Lista vertical de links */
   .mobile-menu ul {
     list-style: none;
     padding: 0;
@@ -567,51 +450,12 @@ html {
 
   .mobile-menu ul li a:hover {
     background: #eff6ff;
-    /* azul claro */
     color: #1e40af;
-    /* azul oscuro */
-  }
-
-  /* Botón "Agendar visita" dentro del mobile menu */
-  .mobile-menu .btn-primary {
-    display: block;
-    width: calc(100% - 32px);
-    margin: 16px auto 0 auto;
-    padding: 12px 24px;
-    font-size: 16px;
-    text-align: center;
-    background: var(--color-blue-600);
-    color: var(--color-white);
-    border-radius: 6px;
-    font-weight: 400;
-    text-decoration: none;
-    transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.12s ease;
-  }
-
-  .mobile-menu .btn-primary:hover {
-    background: var(--color-blue-700);
-    /* azul-700 */
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.12);
   }
 }
 
 
 @media (max-width: 480px) {
-
-  /* Encabezado más compacto */
-  .navbar {
-    padding: 6px 16px;
-  }
-
-  /* Logo más pequeño */
-  .logo-text h1 {
-    font-size: 13px;
-  }
-
-  .logo-text p {
-    font-size: 0.65rem;
-  }
 
   /* Icono hamburguesa más accesible */
   .menu-toggle {
@@ -631,21 +475,12 @@ html {
     font-size: 18px;
     padding: 14px 0;
   }
-
-  /* Botón "Agendar visita" dentro del mobile menu */
-  .mobile-menu .btn-primary {
-    width: calc(100% - 32px);
-    margin: 16px auto 0 auto;
-    /* centrado horizontal */
-    font-size: 16px;
-    padding: 14px 0;
-  }
 }
 
 
 /* ====== HERO SECTION ====== */
 .hero {
-  height: 650px;
+  height: 745px;
   background: url('../img/banner.jpg') center/cover no-repeat;
   position: relative;
   display: flex;
@@ -759,225 +594,48 @@ html {
   background-color: var(--color-blue-50);
 }
 
-/* =============================
-   🟦 HERO – 1400px
-   ============================= */
+/* Hero 1400px */
 @media (max-width: 1400px) {
 
-  .hero-content h2 {
-    font-size: 64px;
-    /* ligeramente más pequeño */
-    line-height: 68px;
-  }
-
-  .hero-content p {
-    font-size: 22px;
-    line-height: 32px;
-    /* un poco más cómodo */
-  }
-
-  .btn-secondary {
-    font-size: 15px;
-    padding: 14px 28px;
-  }
-
-  .scroll-down i {
-    font-size: 24px;
-  }
 }
 
-
-/* =============================
-   🟦 HERO – 1200px
-   ============================= */
+/* Hero 1200px */
 @media (max-width: 1200px) {
 
-  .hero-content {
-    max-width: 650px;
-    /* mantiene el contenido centrado y compacto */
-    padding: 0 1rem;
-    /* un poco de margen lateral */
-  }
-
-  .hero-content h2 {
-    font-size: 56px;
-    line-height: 62px;
-    margin-bottom: 1.2rem;
-  }
-
-  .hero-content p {
-    font-size: 20px;
-    line-height: 28px;
-    margin-bottom: 3rem;
-  }
-
-  .btn-secondary {
-    padding: 14px 30px;
-    font-size: 15px;
-  }
-
-  /* Flecha scroll proporcional */
-  .scroll-down i {
-    font-size: 22px;
-    bottom: 24px;
-  }
 }
 
-
-/* =============================
-   🟦 HERO – 1024px
-   ============================= */
+/* hero 1024px*/
 @media (max-width: 1024px) {
-  .hero-content {
-    max-width: 580px;
-    padding: 0 1.5rem;
-  }
 
-  .hero-content h2 {
-    font-size: 48px;
-    line-height: 54px;
-    margin-bottom: 1.2rem;
-  }
-
-  .hero-content p {
-    font-size: 18px;
-    line-height: 26px;
-    margin-bottom: 3rem;
-  }
-
-  .btn-secondary {
-    padding: 14px 28px;
-    font-size: 15px;
-  }
-
-  /* Flecha scroll proporcional y centrada */
-  .scroll-down {
-    bottom: 20px;
-  }
-
-  .scroll-down i {
-    font-size: 20px;
-  }
 }
 
-
-/* =============================
-   🟦 HERO – 768px
-   ============================= */
+/* hero 768px */
 @media (max-width: 768px) {
-  .overlay {
-    opacity: 0.92;
-    /* Mejor lectura */
-  }
 
-  .hero-content {
-    max-width: 500px;
-    padding: 0 1.8rem;
-  }
+.hero-content {
+        max-width: 592px;
+        padding: 0 24px;
+    }
 
-  .hero-content h2 {
-    font-size: 38px;
-    line-height: 44px;
-    margin-bottom: 1rem;
-  }
+    .hero-content h2 {  
+        font-size: 48px;
+        line-height: 48px;
+        margin-bottom: 24px;
+    }
 
-  .hero-content p {
-    font-size: 17px;
-    line-height: 24px;
-    margin-bottom: 2.4rem;
-  }
-
-  .btn-secondary {
-    padding: 14px 26px;
-    font-size: 14px;
-  }
-
-  .scroll-down {
-    bottom: 18px;
-  }
-
-  .scroll-down i {
-    font-size: 20px;
-  }
+    .hero-content p {
+        font-size: 20px;
+        line-height: 28px;
+        margin-bottom: 48px;
+    }
 }
 
-/* =============================
-   🟦 HERO – 480px
-   ============================= */
+/* hero 480px*/
 @media (max-width: 480px) {
-
-  .overlay {
-    opacity: 0.94;
-    /* Mucho mejor contraste para texto */
-  }
-
-  .hero-content {
-    max-width: 90%;
-    padding: 0 1.2rem;
-  }
-
-  .hero-content h2 {
-    font-size: 34px;
-    line-height: 36px;
-    margin-bottom: 0.8rem;
-  }
-
-  .hero-content p {
-    font-size: 15px;
-    line-height: 22px;
-    margin-bottom: 2rem;
-  }
-
-  .btn-secondary {
-    font-size: 14px;
-    padding: 12px 22px;
-    border-radius: 8px;
-  }
-
-  .scroll-down {
-    bottom: 14px;
-  }
-
-  .scroll-down i {
-    font-size: 18px;
-  }
 }
 
-/* =============================
-   🟦 HERO – 360px
-   ============================= */
+/* Hero 360px*/
 @media (max-width: 360px) {
-
-  .hero-content {
-    max-width: 92%;
-    padding: 0 1rem;
-  }
-
-  .hero-content h2 {
-    font-size: 26px;
-    line-height: 32px;
-    margin-bottom: 0.7rem;
-  }
-
-  .hero-content p {
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 1.8rem;
-  }
-
-  .btn-secondary {
-    font-size: 13px;
-    padding: 10px 20px;
-    border-radius: 8px;
-  }
-
-  .scroll-down {
-    bottom: 10px;
-  }
-
-  .scroll-down i {
-    font-size: 16px;
-  }
 }
 
 
@@ -1248,11 +906,6 @@ html {
     /* 3 tarjetas visibles con gap */
   }
 
-  .carousel-title {
-    font-size: 48px;
-    line-height: 56px;
-  }
-
   .carousel-item {
     min-width: 360px;
     height: 400px;
@@ -1289,11 +942,6 @@ html {
   .carousel-wrapper {
     max-width: calc((278px * 3) + (30px * 2));
     /* Ajuste sutil de ancho para 3 tarjetas */
-  }
-
-  .carousel-title {
-    font-size: 44px;
-    line-height: 52px;
   }
 
   .carousel-item {
@@ -1336,11 +984,6 @@ html {
     /* 2 tarjetas + gap entre ellas */
     margin: 0 auto;
     /* centrar el wrapper */
-  }
-
-  .carousel-title {
-    font-size: 38px;
-    line-height: 46px;
   }
 
   .carousel-item {
@@ -1387,7 +1030,7 @@ html {
   }
 
   .carousel-title {
-    font-size: 34px;
+    font-size: 36px;
     line-height: 40px;
   }
 
@@ -1624,17 +1267,7 @@ html {
     /* más compacto que 100px */
   }
 
-  .services h2 {
-    font-size: 42px;
-    line-height: 44px;
-    margin-bottom: 14px;
-  }
 
-  .section-subtitle {
-    font-size: 18px;
-    line-height: 26px;
-    margin-bottom: 2.5rem;
-  }
 
   /* Contenedor de tarjetas */
   .service-list {
@@ -1663,31 +1296,6 @@ html {
     gap: 0.8rem;
   }
 
-  /* Ícono */
-  .icon {
-    font-size: 2.2rem;
-    /* antes 2.5rem */
-  }
-
-  /* Títulos */
-  .service-header h3,
-  .service-content h3 {
-    font-size: 26px;
-    /* vs 30px original */
-    line-height: 32px;
-  }
-
-  /* Descripción */
-  .description {
-    font-size: 16px;
-    line-height: 26px;
-  }
-
-  /* Botón */
-  .card-button {
-    padding: 10px 20px;
-    font-size: 15px;
-  }
 }
 
 /* ====== Responsive 768px ====== */
@@ -1741,11 +1349,6 @@ html {
   /* Header dentro de la tarjeta */
   .service-header {
     gap: 0.7rem;
-  }
-
-  .icon {
-    font-size: 1.9rem;
-    /* más pequeño aún */
   }
 
   .service-content h3 {
@@ -1815,7 +1418,7 @@ html {
   .service-content {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    margin-top: 90px;
+    margin-top: 75px;
     /* ajustado para móviles */
     gap: 0.5rem;
   }
@@ -1823,11 +1426,6 @@ html {
   /* Header dentro de la tarjeta */
   .service-header {
     gap: 1rem;
-  }
-
-  /* Icono */
-  .icon {
-    font-size: 1.6rem;
   }
 
   /* Título de cada tarjeta */
@@ -2209,7 +1807,7 @@ html {
 }
 
 /* ===== RESPONSIVE: Unificar animaciones en pantallas pequeñas ===== */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
   /* reveal-left pasa a animación vertical */
   .reveal-left {
@@ -2351,7 +1949,7 @@ html {
 .footer {
   background-color: #1B3A9C;
   color: white;
-  padding: 3rem 1rem 2rem;
+  padding: 3rem 2rem 2rem;
   font-size: 0.95rem;
 }
 
@@ -2361,7 +1959,7 @@ html {
   justify-content: space-between;
   gap: 2rem;
   max-width: 1200px;
-  margin: auto;
+  margin: auto; 
 }
 
 .footer-col {
@@ -2375,13 +1973,11 @@ html {
   gap: 10px;
 }
 
-.logofo-icon {
-  background: #fff;
-  color: var(--color-blue-900);
-  font-size: 16px;
-  font-weight: 400;
-  border-radius: 8px;
-  padding: 9px 12px;
+/* Logo imagen footer */
+.logofo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .logofo-text h1 {
