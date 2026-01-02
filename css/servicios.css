@@ -45,11 +45,9 @@
   border-radius: 50%;
 }
 
-/* Tooltip oculto por defecto */
 .whatsapp-tooltip {
   position: absolute;
   bottom: 70px;
-  /* encima del botón */
   right: 0;
   background-color: #25D366;
   color: white;
@@ -61,7 +59,6 @@
   transition: opacity 0.3s;
 }
 
-/* Mostrar tooltip al pasar el cursor */
 .whatsapp-btn:hover .whatsapp-tooltip {
   opacity: 1;
 }
@@ -75,7 +72,6 @@
 
 body {
   background-color: #F9FAFB;
-  /* Puedes cambiar este color por el que prefieras */
 }
 
 /* ====== MENU ====== */
@@ -145,12 +141,12 @@ body {
 
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1535px;    /* similar al límite del contenedor */
-    margin: 0 auto;       /* centra */
-    padding: 0 2rem;      /* igual que px-8 */
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1535px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .hero-content h2 {
@@ -170,18 +166,18 @@ body {
 }
 
 .detalle-servicio {
-    padding: 64px 32px;
-    max-width: 1535px;
-    margin: 0 auto;
+  padding: 64px 32px;
+  max-width: 1535px;
+  margin: 0 auto;
 }
 
 .detalle-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-    max-width: 1472px;
-    margin: 0 auto;
-    gap: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  max-width: 1472px;
+  margin: 0 auto;
+  gap: 48px;
 }
 
 .detalle-contenido {
@@ -224,10 +220,6 @@ body {
   margin-right: 0.5rem;
 }
 
-
-/* ===== AGENDAR CITA ===== */
-
-/* ===== CONTENEDOR SUPERIOR (AZUL) ===== */
 .cita-header {
   background: #107086;
   padding: 24px;
@@ -271,7 +263,6 @@ body {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== BOTÓN ACTIVO (según Figma) ===== */
 .cita-button.active {
   background: #13B6CB;
   color: white;
@@ -287,12 +278,10 @@ body {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== FORMULARIOS (la clase para cada formulario) ===== */
 .form-section {
   animation: fadeIn .3s ease;
 }
 
-/* ===== ANIMACIÓN SUAVE ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -346,22 +335,18 @@ body {
 
 .asterisco-rojo {
   color: #dc2626;
-  /* rojo similar a Tailwind red-500 */
 }
 
-/* Ocultar al inicio */
 .hidden {
   display: none !important;
 }
 
-/* Contenedor general */
 .horarios {
   margin-top: 20px;
   margin-bottom: 24px;
   animation: fadeIn .3s ease;
 }
 
-/* Etiqueta del bloque */
 .label-horario {
   display: flex;
   align-items: center;
@@ -373,7 +358,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* Grid de horas */
 .horas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -383,18 +367,15 @@ body {
 @media(min-width: 640px) {
   .horas-grid {
     grid-template-columns: repeat(4, 1fr);
-    /* sm:grid-cols-4 */
   }
 }
 
 @media(min-width: 768px) {
   .horas-grid {
     grid-template-columns: repeat(6, 1fr);
-    /* md:grid-cols-6 */
   }
 }
 
-/* Botones */
 .horas-grid button {
   padding: 8px 12px;
   border: none;
@@ -411,40 +392,31 @@ body {
 
 .horas-grid button.active {
   background: var(--color-blue-600);
-  /* bg-blue-600 */
   color: var(--color-white);
 }
 
-/* Texto de disponibilidad */
 .info-cupo {
   font-size: 14px;
   color: #666;
   margin-top: 8px;
 }
 
-/* ===== DATOS PERSONALES Y RESUMEN ===== */
 #datosPersonalesPresencial,
 #datosPersonalesVirtual {
   animation: fadeIn 0.3s ease;
 }
 
-/* Grid interno de inputs */
 .form-group.grid-cols-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-/* Resumen de la cita */
 .resumen-cita {
   background: #eff6ff;
-  /* bg-blue-50 */
   border-radius: 0.5rem;
-  /* rounded-lg */
   border: 1px solid #bfdbfe;
-  /* border-blue-200 */
   padding: 16px;
-  /* p-4 */
   margin-bottom: 16px;
 }
 
@@ -489,10 +461,8 @@ body {
 
 .cita-button-call {
   padding: 16px 24px;
-  /* px-6 py-4 */
   border-radius: 0.5rem;
   background-color: var(--color-green-600);
-  /* bg-green-600 */
   color: var(--color-white);
   font-weight: 400;
   font-size: 16px;
@@ -504,19 +474,17 @@ body {
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   border: none;
-  /* quitar borde predeterminado */
   outline: none;
 }
 
 .cita-button-call:hover {
   background-color: var(--color-green-700);
-  /* hover:bg-green-700 */
   transform: scale(1.05);
 }
 
 .form-group.one-button {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -527,13 +495,11 @@ body {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Activo ( visible ) */
 .confirmacion.activo {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Estilos internos del mensaje */
 .confirmacion .card {
   background: var(--color-green-50);
   border: 2px solid var(--color-green-200);
@@ -573,8 +539,6 @@ body {
   color: #047857;
 }
 
-
-/* ===== TERMINA CITA ===== */
 
 .info-extra {
   display: flex;
@@ -626,25 +590,21 @@ body {
   transform: translateY(0);
 }
 
-/* =======================
-   RESPONSIVE — 1400px
-======================= */
 @media (max-width: 1400px) {
 
   .nav-content {
     max-width: 1280px;
-}
+  }
 
-.hero-content {
+  .hero-content {
     max-width: 1280px;
-}
+  }
 
-.detalle-servicio {
+  .detalle-servicio {
     max-width: 1280px;
-}
+  }
 
-  /* Grid principal */
-  .detalle-grid { 
+  .detalle-grid {
     max-width: 1216px;
   }
 
@@ -654,77 +614,74 @@ body {
 
   .nav-content {
     max-width: 1024px;
-}
+  }
 
-.hero-content {
+  .hero-content {
     max-width: 1024px;
-}
+  }
 
-.detalle-servicio {
+  .detalle-servicio {
     max-width: 1024px;
-}
+  }
 
-  /* Grid principal */
-  .detalle-grid { 
+  .detalle-grid {
     max-width: 960px;
   }
 
-    .form-group.grid-cols-2 {
-  grid-template-columns: 1fr;
-}
+  .form-group.grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 1024px) {
 
-    .nav-content {
+  .nav-content {
     max-width: 768px;
-}
+  }
 
-.hero-content {
+  .hero-content {
     max-width: 768px;
-}
+  }
 
-.detalle-servicio {
+  .detalle-servicio {
     max-width: 768px;
-}
+  }
 
-  /* Grid principal */
-  .detalle-grid { 
+  .detalle-grid {
     max-width: 720px;
     grid-template-columns: 1fr;
   }
 
-    .form-group.grid-cols-2 {
-  grid-template-columns: 1fr 1fr;
-}
+  .form-group.grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 768px) {
 
-.nav-content {
+  .nav-content {
     max-width: 640px;
-}
+  }
 
-.hero-content {
+  .hero-content {
     max-width: 640px;
-}
+  }
 
-.detalle-servicio {
+  .detalle-servicio {
     max-width: 640px;
-}
+  }
 
-  /* Grid principal */
-  .detalle-grid { 
+  .detalle-grid {
     max-width: 592px;
   }
 
   .form-group.grid-cols-2 {
-  grid-template-columns: 1fr;
-}
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
-    .info-extra {
+  .info-extra {
     flex-direction: column;
   }
 
@@ -734,18 +691,17 @@ body {
     margin-bottom: 1rem;
     line-height: 40px;
     color: var(--color-white);
-}
+  }
 
-.hero-content p {
+  .hero-content p {
     line-height: 28px;
     font-size: 20px;
     font-weight: 400;
     color: #fff;
     width: 90%;
-}
+  }
 }
 
-/* ESTADO: ocupado (máxima prioridad) */
 .horas-grid button.ocupado,
 .horas-grid button.ocupado:hover,
 .horas-grid button.ocupado:focus {
@@ -758,7 +714,6 @@ body {
   transform: none !important;
 }
 
-/* Asegurar que el hover no cambie nada */
 .horas-grid button.ocupado:hover {
   background: var(--color-gray-300) !important;
 }

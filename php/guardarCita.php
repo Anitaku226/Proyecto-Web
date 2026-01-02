@@ -1,8 +1,7 @@
 <?php
 header('Content-Type: application/json');
-include "conexion.php"; // archivo de conexión que crearemos luego
+include "conexion.php"; 
 
-// --- Recibir datos ---
 $tipo      = $_POST['tipo'] ?? '';
 $nombre    = $_POST['nombre'] ?? '';
 $dni       = $_POST['dni'] ?? '';
@@ -14,7 +13,6 @@ $hora      = $_POST['hora'] ?? '';
 $distrito  = $_POST['distrito'] ?? null;
 $zona      = $_POST['zona'] ?? null;
 
-// --- Validación básica ---
 if (empty($tipo) || empty($nombre) || empty($dni) || empty($email) ||
     empty($telefono) || empty($asunto) || empty($fecha) || empty($hora)) {
     
@@ -22,7 +20,6 @@ if (empty($tipo) || empty($nombre) || empty($dni) || empty($email) ||
     exit;
 }
 
-// --- Verificar si fecha + hora ya están ocupados ---
 $query = "SELECT id FROM citas WHERE fecha = ? AND hora = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("ss", $fecha, $hora);
@@ -34,7 +31,6 @@ if ($stmt->num_rows > 0) {
     exit;
 }
 
-// --- Insertar nueva cita ---
 $insert = "INSERT INTO citas (tipo, nombre, dni, email, telefono, asunto, fecha, hora, distrito, zona)
            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $stmt2 = $conn->prepare($insert);

@@ -6,7 +6,6 @@ require 'PHPMailer/Exception.php';
 require 'PHPMailer/PHPMailer.php';
 require 'PHPMailer/SMTP.php';
 
-// --- Recibir datos del formulario ---
 $tipo      = $_POST['tipo'] ?? '';
 $nombre    = $_POST['nombre'] ?? '';
 $dni       = $_POST['dni'] ?? '';
@@ -18,7 +17,6 @@ $hora      = $_POST['hora'] ?? '';
 $distrito  = $_POST['distrito'] ?? '';
 $zona      = $_POST['zona'] ?? '';
 
-// --- Preparar contenido del correo ---
 $mensaje = '
 <div style="max-width:600px; margin:0 auto; padding:20px; 
             border:1px solid #e0e0e0; border-radius:10px; 

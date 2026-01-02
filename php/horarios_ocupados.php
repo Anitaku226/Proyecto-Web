@@ -18,7 +18,6 @@ $result = $stmt->get_result();
 $horas = [];
 while ($row = $result->fetch_assoc()) {
 
-    // Normalizar formato: "08:00:00" → "08:00"
     $hora = substr($row["hora"], 0, 5);
     $horas[] = $hora;
 }

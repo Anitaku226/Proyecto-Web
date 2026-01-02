@@ -1,43 +1,26 @@
-// =====================================================
-//  SISTEMA COMPLETO: HORARIOS + BD + CORREO + ANIMACIÓN
-//  (Integrado y sin funciones duplicadas)
-// =====================================================
-
-
-// --- FUNCIONES GENERALES ---
 function resetFechasYHorarios() {
     console.log("🔄 Reseteando fechas y horarios...");
 
-    // Ocultar fechas
     const fechaP = document.getElementById("fechaPresencial");
     const fechaV = document.getElementById("fechaVirtual");
     if (fechaP) fechaP.style.display = "none";
     if (fechaV) fechaV.style.display = "none";
 
-    // Limpiar inputs
     const inputP = document.getElementById("inputFechaPresencial");
     const inputV = document.getElementById("inputFechaVirtual");
     if (inputP) inputP.value = "";
     if (inputV) inputV.value = "";
 
-    // Ocultar horarios
     const horariosP = document.getElementById("horariosContainerPresencial");
     const horariosV = document.getElementById("horariosContainerVirtual");
     if (horariosP) horariosP.classList.add("hidden");
     if (horariosV) horariosV.classList.add("hidden");
 
-    // Ocultar datos personales
     const datosP = document.getElementById("datosPersonalesPresencial");
     const datosV = document.getElementById("datosPersonalesVirtual");
     if (datosP) datosP.style.display = "none";
     if (datosV) datosV.style.display = "none";
 }
-
-
-
-// =====================================================
-//      CAMBIO ENTRE FORM PRESENCIAL Y VIRTUAL
-// =====================================================
 
 const btnPresencial = document.getElementById("btnPresencial");
 const btnVirtual = document.getElementById("btnVirtual");
@@ -63,9 +46,7 @@ btnVirtual.addEventListener("click", () => {
 
 
 
-// =====================================================
-//      MANEJO DE SELECTS
-// =====================================================
+
 
 const selectPresencial = document.getElementById("selectPresencial");
 const selectVirtual = document.getElementById("selectVirtual");
@@ -76,11 +57,6 @@ const fechaVirtual = document.getElementById("fechaVirtual");
 const horasPresencial = ["08:00", "10:00", "12:00", "15:00", "17:00"];
 const horasVirtual = ["18:00", "19:00", "20:00"];
 
-
-// --- Mostrar Horarios ---
-// ====================================================================
-//   MOSTRAR HORARIOS + BLOQUEO DINÁMICO (CONSULTA A BD)
-// ====================================================================
 async function mostrarHorarios(tipo) {
 
     let contenedor, lista, inputFecha;
@@ -98,21 +74,14 @@ async function mostrarHorarios(tipo) {
     const fechaSeleccionada = inputFecha.value.trim();
     if (!fechaSeleccionada) return;
 
-    // Horarios base
     const horarios = tipo === "Presencial" ? horasPresencial : horasVirtual;
 
-    // =====================================================
-    // 1. CONSULTAR HORARIOS OCUPADOS EN PHP
-    // =====================================================
     const response = await fetch(
         `../php/horarios_ocupados.php?fecha=${fechaSeleccionada}&tipo=${tipo.toLowerCase()}`
     );
 
     const ocupados = await response.json(); // Ej: ["10:00", "15:00"]
 
-    // =====================================================
-    // 2. GENERAR BOTONES
-    // =====================================================
     lista.innerHTML = "";
 
     horarios.forEach(h => {
@@ -122,63 +91,57 @@ async function mostrarHorarios(tipo) {
 
         const isOcupado = ocupados.includes(h);
 
-if (isOcupado) {
-    // 1) atributos accesibilidad / bloqueo
-    btn.disabled = true;
-    btn.setAttribute('aria-disabled', 'true');
-    btn.setAttribute('tabindex', '-1');
+        if (isOcupado) {
+            btn.disabled = true;
+            btn.setAttribute('aria-disabled', 'true');
+            btn.setAttribute('tabindex', '-1');
 
-    // 2) clase semántica
-    btn.classList.add('ocupado');
+            btn.classList.add('ocupado');
 
-    // 3) estilo inline FORZADO con !important (atributo style completo)
-    //    — usamos setAttribute para poder incluir !important
-    btn.setAttribute('style',
-        'background: var(--color-gray-300) !important; ' +
-        'color: var(--color-gray-500) !important; ' +
-        'cursor: not-allowed !important; ' +
-        'opacity: 0.6 !important; ' +
-        'pointer-events: none !important; ' +
-        'transition: none !important; ' +
-        'box-shadow: none !important; ' +
-        'transform: none !important;'
-    );
+            btn.setAttribute('style',
+                'background: var(--color-gray-300) !important; ' +
+                'color: var(--color-gray-500) !important; ' +
+                'cursor: not-allowed !important; ' +
+                'opacity: 0.6 !important; ' +
+                'pointer-events: none !important; ' +
+                'transition: none !important; ' +
+                'box-shadow: none !important; ' +
+                'transform: none !important;'
+            );
 
-} else {
-    // disponible (igual que antes)
-    btn.className =
-        "px-3 py-2 rounded-lg text-sm transition-all bg-gray-100 text-gray-700 hover:bg-gray-200";
+        } else {
+            btn.className =
+                "px-3 py-2 rounded-lg text-sm transition-all bg-gray-100 text-gray-700 hover:bg-gray-200";
 
-    btn.addEventListener("click", () => {
-        const datos = document.getElementById(
-            tipo === "Presencial"
-                ? "datosPersonalesPresencial"
-                : "datosPersonalesVirtual"
-        );
+            btn.addEventListener("click", () => {
+                const datos = document.getElementById(
+                    tipo === "Presencial"
+                        ? "datosPersonalesPresencial"
+                        : "datosPersonalesVirtual"
+                );
 
-        if (datos) datos.style.display = "block";
+                if (datos) datos.style.display = "block";
 
-        const resumenHora = document.getElementById(
-            tipo === "Presencial"
-                ? "resumenHoraPresencial"
-                : "resumenHoraVirtual"
-        );
+                const resumenHora = document.getElementById(
+                    tipo === "Presencial"
+                        ? "resumenHoraPresencial"
+                        : "resumenHoraVirtual"
+                );
 
-        if (resumenHora) resumenHora.textContent = h;
+                if (resumenHora) resumenHora.textContent = h;
 
-        const hiddenInput = document.getElementById(
-            tipo === "Presencial"
-                ? "horaSeleccionadaPresencial"
-                : "horaSeleccionadaVirtual"
-        );
+                const hiddenInput = document.getElementById(
+                    tipo === "Presencial"
+                        ? "horaSeleccionadaPresencial"
+                        : "horaSeleccionadaVirtual"
+                );
 
-        if (hiddenInput) hiddenInput.value = h;
+                if (hiddenInput) hiddenInput.value = h;
 
-        // Quitar "active" de todos
-        lista.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-    });
-}
+                lista.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+            });
+        }
 
 
         lista.appendChild(btn);
@@ -188,7 +151,6 @@ if (isOcupado) {
 }
 
 
-// --- Eventos select ---
 selectPresencial.addEventListener("change", () => {
     resetFechasYHorarios();
 
@@ -216,12 +178,6 @@ selectVirtual.addEventListener("change", () => {
         if (hiddenZona) hiddenZona.value = selectVirtual.value;
     }
 });
-
-
-
-// =====================================================
-//      FLATPICKR - FECHAS
-// =====================================================
 
 flatpickr("#inputFechaPresencial", {
     dateFormat: "Y-m-d",
@@ -257,12 +213,6 @@ flatpickr("#inputFechaVirtual", {
     }
 });
 
-
-
-// =====================================================
-//      ANIMACIÓN ORIGINAL DE CONFIRMACIÓN
-// =====================================================
-
 function mostrarMensajeConfirmacion(tipo) {
 
     const formulario = tipo === 'virtual'
@@ -297,13 +247,6 @@ function mostrarMensajeConfirmacion(tipo) {
     }, 3000);
 }
 
-
-
-// =====================================================
-//      SISTEMA FINAL DE ENVÍO (BD + CORREO + ANIMACIÓN)
-// =====================================================
-
-// ⭐ ESTE ES EL ÚNICO SISTEMA DE ENVÍO AHORA ⭐
 async function procesarFormulario(formId, tipo) {
 
     const form = document.getElementById(formId);
@@ -331,18 +274,13 @@ async function procesarFormulario(formId, tipo) {
             return;
         }
 
-        // 2) Mostrar animación en pantalla
-        mostrarMensajeConfirmacion(tipo);   // ⭐ ANIMACIÓN ORIGINAL
+        mostrarMensajeConfirmacion(tipo);
 
-        // 3) Enviar correo
         const respCorreo = await fetch("../php/enviarCorreo.php", {
             method: "POST",
             body: formData
         });
 
-        // (No reducimos la animación por esperar correo, se mantiene igual)
-
-        // 4) Reset visual
         form.reset();
         resetFechasYHorarios();
     });
@@ -350,15 +288,8 @@ async function procesarFormulario(formId, tipo) {
 
 
 
-// Activar ambos formularios
 procesarFormulario("DatosPresencial", "presencial");
 procesarFormulario("DatosVirtual", "virtual");
-
-
-
-// =====================================================
-//      ANIMACIONES DE SCROLL (SIGUE IGUAL)
-// =====================================================
 
 const revealElements = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver(entries => {

@@ -42,8 +42,6 @@
 
       <!-- Columna izquierda -->
       <div class="detalle-contenido">
-
-        <!-- ¿Qué incluye? -->
         <div class="detalle-box reveal">
           <h3>¿Qué incluye?</h3>
           <ul>
@@ -55,7 +53,6 @@
           </ul>
         </div>
 
-        <!-- Proceso -->
         <div class="detalle-box reveal">
           <h3>Proceso</h3>
           <ol>
@@ -67,7 +64,6 @@
           </ol>
         </div>
 
-        <!-- Tarjetas informativas -->
         <div class="info-extra">
           <div class="info-box reveal">
             <span class="info-icon">⏱️</span>
@@ -82,10 +78,9 @@
         </div>
       </div>
 
-      <!-- Columna derecha: Agendar Cita -->
+      <!-- Columna derecha -->
       <div id="contenedorCita" class="cita-card sticky-cita reveal">
 
-        <!-- HEADER AZUL -->
         <div class="cita-header">
           <h3>Agendar Cita</h3>
           <div class="cita-buttons">
@@ -98,10 +93,8 @@
           </div>
         </div>
 
-        <!-- CONTENIDO DEL FORMULARIO -->
         <div class="cita-form">
 
-          <!-- FORMULARIO PRESENCIAL -->
           <div id="formPresencial" class="form-section">
 
             <div class="form-group">
@@ -134,11 +127,9 @@
               <p class="info-cupo">Aún disponible - capacidad máxima: 5 personas</p>
             </div>
 
-            <!-- ================== DATOS PERSONALES PRESENCIAL ================== -->
             <div id="datosPersonalesPresencial" class="form-section" style="display:none;">
               <form id="DatosPresencial" action="../php/procesar_cita.php" method="POST">
 
-                <!-- NOMBRE COMPLETO -->
                 <div class="form-group grid-cols-2">
                   <div>
                     <label class="cita-label" for="nombreCompletoPresencial">
@@ -154,7 +145,6 @@
                   </div>
                 </div>
 
-                <!-- CORREO -->
                 <div class="form-group grid-cols-2">
                   <div>
                     <label class="cita-label" for="emailPresencial">
@@ -171,7 +161,6 @@
                   </div>
                 </div>
 
-                <!-- ASUNTO -->
                 <div class="form-group">
                   <label class="cita-label" for="asuntoPresencial">
                     Asunto <span class="asterisco-rojo">*</span>
@@ -179,7 +168,6 @@
                   <textarea id="asuntoPresencial" class="cita-input" rows="3" name="asunto" required></textarea>
                 </div>
 
-                <!-- RESUMEN -->
                 <div id="resumenCitaPresencial" class="resumen-cita">
                   <h4>Resumen de tu cita</h4>
                   <p>Fecha: <span id="resumenFechaPresencial"></span></p>
@@ -188,7 +176,6 @@
                   <p>Distrito: <span id="resumenDistritoPresencial"></span></p>
                 </div>
 
-                <!-- BOTÓN -->
                 <div class="form-group one-button">
                   <button type="submit" class="cita-button-submit">Agendar Visita</button>
                 </div>
@@ -203,7 +190,6 @@
 
           </div>
 
-          <!-- FORMULARIO VIRTUAL -->
           <div id="formVirtual" class="form-section" style="display:none;">
 
             <div class="form-group">
@@ -234,7 +220,6 @@
             <div id="datosPersonalesVirtual" class="form-section" style="display:none;">
               <form id="DatosVirtual" action="../php/procesar_cita.php" method="POST">
 
-                <!-- NOMBRE COMPLETO + DNI -->
                 <div class="form-group grid-cols-2">
                   <div>
                     <label class="cita-label" for="nombreCompletoVirtual">
@@ -251,7 +236,6 @@
                   </div>
                 </div>
 
-                <!-- CORREO + TELÉFONO -->
                 <div class="form-group grid-cols-2">
                   <div>
                     <label class="cita-label" for="emailVirtual">
@@ -268,7 +252,6 @@
                   </div>
                 </div>
 
-                <!-- ASUNTO -->
                 <div class="form-group">
                   <label class="cita-label" for="asuntoVirtual">
                     Asunto <span class="asterisco-rojo">*</span>
@@ -276,7 +259,6 @@
                   <textarea id="asuntoVirtual" class="cita-input" rows="3" name="asunto" required></textarea>
                 </div>
 
-                <!-- RESUMEN -->
                 <div id="resumenCitaVirtual" class="resumen-cita">
                   <h4>Resumen de tu cita</h4>
                   <p>Fecha: <span id="resumenFechaVirtual"></span></p>
@@ -285,7 +267,6 @@
                   <p>Distrito: <span id="resumenDistritoVirtual"></span></p>
                 </div>
 
-                <!-- BOTÓN -->
                 <div class="form-group one-button">
                   <button type="submit" class="cita-button-submit">Agendar Visita</button>
                 </div>
@@ -296,7 +277,7 @@
                 <input type="hidden" id="zonaSeleccionadaVirtual" name="zona">
               </form>
             </div>
-            
+
           </div>
         </div>
         <div id="mensajeConfirmacion" class="confirmacion hidden"></div>
@@ -305,7 +286,6 @@
     </div>
   </section>
 
-  <!-- Flatpickr JS -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 
